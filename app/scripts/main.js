@@ -61,17 +61,20 @@ for (cat in cats) {
     clicks.textContent = cats[cat].clicks;
     clicksdiv.appendChild(clicks);
 
-    pic.addEventListener('click', (function(clickscopy){
+    pic.addEventListener('click', (function(clickscopy,piccopy){
         return function(){
             var clickscopyint = parseInt(clickscopy.textContent);
             clickscopyint = clickscopyint + 1;
             clickscopy.textContent = clickscopyint.toString();
             var jumbopic = document.createElement('img');
-            jumbopic.src = pic.src;
+            jumbopic.className = 'img-responsive';
+            jumbopic.src = piccopy.src;
             var jumbo = document.getElementById('maincat');
+            var jumbochild = jumbo.firstChild;
+            jumbo.removeChild(jumbochild);
             jumbo.appendChild(jumbopic);
         };
-    })(clicks));
+    })(clicks,pic));
 };
 //for (cat in cats){
 //    catHtml =   catHtml + '<div class="row">' +
@@ -84,15 +87,4 @@ for (cat in cats) {
 //    catEvents.push(document.getElementById('catpic' + cat));
 //};
 
-console.log(catEvents);
 
-var catpic;
-for (catEvent in catEvents){
-    
-    catEvents[catEvent].addEventListener('click', function( event ) {
-        console.log('ok');
-        alert('okay');
-    });
-    console.log(catEvents[catEvent]);
-};
-console.log(catEvents);
